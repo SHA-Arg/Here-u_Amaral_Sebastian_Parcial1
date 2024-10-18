@@ -3,7 +3,7 @@
 ---
 
 ## Alumno
-**Nombre del alumno**: [Tu Nombre Aquí]
+**Nombre del alumno**: Hereñu Amaral Sebastian
 
 ## 📄 Descripción del Proyecto
 
