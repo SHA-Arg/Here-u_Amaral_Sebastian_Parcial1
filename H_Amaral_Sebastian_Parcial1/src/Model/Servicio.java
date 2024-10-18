@@ -40,5 +40,11 @@ public abstract class Servicio {
     // Método abstracto
     public abstract double calcularPrecioFinal(java.time.LocalDate dia);
 
-
+    /*
+    No logre terminar por eso quedo asi de hardcodeado.
+    */
+    public String calcularPrecioFinal() {
+    return toString();
+    }
+       
 }

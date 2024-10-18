@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package Test;
 
 /**
@@ -9,17 +6,18 @@ package Test;
  * @author Sebastian
  */
 import Model.*;
+import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // 1. Pruebas de creación de objetos con codServicio inválido
         System.out.println("1-1: Intentar crear el objeto Gastronomia con codServicio inválido (menos de 5 dígitos)");
         try {
-            Gastronomia plato1 = new Gastronomia("489265", 180.0, true, "Hamburguesa criolla", 15.0, 4);
+            Gastronomia plato1 = new Gastronomia("4892", 180.0, true, "Hamburguesa criolla", 15.0, 4);
         } catch (ServicioException e) {
             System.out.println("Excepción capturada: " + e.getMessage());
         }
@@ -30,7 +28,7 @@ public class Test {
 
         System.out.println("1-3: Intentar crear el objeto Hospedaje con codServicio inválido (menos de 5 dígitos)");
         try {
-            Hospedaje hospedaje1 = new Hospedaje("2872", 1500.0, true, "Cabaña 3 personas", 10.0);
+            Hospedaje hospedaje1 = new Hospedaje("2871", 1600.0, true, "Cabaña 3 personas", 10.0);
         } catch (ServicioException e) {
             System.out.println("Excepción capturada: " + e.getMessage());
         }
@@ -49,7 +47,7 @@ public class Test {
         System.out.println("Precio final para Gastronomia sin descuento: $" + precioSinDescuentoGastronomia);
 
         System.out.println("2-3: Calcular precio final para el servicio de Hospedaje en promoción");
-        double precioFinalHospedajePromocion = hospedaje2.calcularPrecioFinal();
+        double precioFinalHospedajePromocion = hospedaje2.calcularPrecioFinal(LocalDate.now());
         System.out.println("Precio final para Hospedaje en promoción: $" + precioFinalHospedajePromocion);
 
         // 3. Verificación de la consistencia del sistema (agregar servicios a una lista)

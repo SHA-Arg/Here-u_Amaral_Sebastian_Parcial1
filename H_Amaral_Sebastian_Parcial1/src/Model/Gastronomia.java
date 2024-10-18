@@ -52,5 +52,13 @@ public class Gastronomia extends Servicio{
     public double getPrecio() {
         return precio;
     }
+
+    private double getPorcentajeDescuento() {
+       return porcentajeDescuento;
+    }
+
+    public double calcularPrecioFinal(int i) {
+       return precio;
+    }
  
 }
