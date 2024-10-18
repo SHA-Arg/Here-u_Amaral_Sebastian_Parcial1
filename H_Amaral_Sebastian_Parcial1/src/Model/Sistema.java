@@ -51,7 +51,7 @@ public class Sistema {
     public List<Servicio> traerServicio(boolean enPromocion) {
         List<Servicio> serviciosEnPromocion = new ArrayList<>();
         for (Servicio s : listaServicio) {
-            if (s.isEnPromocion() == enPromocion) {
+            if (s.estaEnPromocion() == enPromocion) {
                 serviciosEnPromocion.add(s);
             }
         }
@@ -62,7 +62,7 @@ public class Sistema {
     public List<Servicio> traerServicio(boolean enPromocion, LocalDate dia) {
         List<Servicio> serviciosEnPromocion = new ArrayList<>();
         for (Servicio s : listaServicio) {
-            if (s.isEnPromocion() == enPromocion && s.calcularPrecioFinal(dia) < s.calcularPrecioFinal(dia)) {
+            if (s.estaEnPromocion() == enPromocion && s.calcularPrecioFinal(dia) < s.calcularPrecioFinal(dia)) {
                 serviciosEnPromocion.add(s);
             }
         }

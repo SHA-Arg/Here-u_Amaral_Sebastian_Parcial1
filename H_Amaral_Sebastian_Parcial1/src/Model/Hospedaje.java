@@ -7,43 +7,37 @@ package Model;
 /**
  *
  * @author Sebastian
- * 
- * Clase Hospedaje que extiende de Servicio.
- * Representa un servicio de hospedaje y contiene atributos específicos como el precio por noche y descuentos.
+ *
+ * Clase Hospedaje que extiende de Servicio. Representa un servicio de hospedaje y contiene atributos específicos como el precio por noche y descuentos.
  */
 public class Hospedaje extends Servicio {
+
     // Atributos específicos de Hospedaje
     private String hospedaje;
-    private String nombreHospedaje;
     private double precioPorNoche;
 
-     /**
-     * Constructor de la clase Hospedaje.
-     * Verifica que el codServicio sea válido antes de asignarlo.
-     * 
+    /**
+     * Constructor de la clase Hospedaje. Verifica que el codServicio sea válido antes de asignarlo.
+     *
      * @param codServicio Código único del servicio.
-     * @param nombreHospedaje Nombre del servicio de hospedaje.
      * @param precioPorNoche Precio por noche del servicio.
      * @param porcentajeDescuento Porcentaje de descuento aplicado.
      * @param enPromocion Indica si el servicio está en promoción.
      * @throws ServicioException Si el codServicio no es válido.
      */
-      public Hospedaje(String codServicio, double precioPorNoche, boolean enPromocion, String nombreHospedaje, double porcentajeDescuento) {
-          if (String.valueOf(codServicio).length() < 5) {
-            throw new ServicioException("El código de servicio debe tener al menos 5 dígitos.");
-        }
-        this.codServicio = codServicio;
-        this.nombreHospedaje = nombreHospedaje;
+    // Constructor
+    public Hospedaje(String codServicio, double porcentajeDescuento, boolean enPromocion, String hospedaje, double precioPorNoche) throws Exception {
+        super(codServicio, porcentajeDescuento, enPromocion);
+        this.hospedaje = hospedaje;
         this.precioPorNoche = precioPorNoche;
-        this.porcentajeDescuento = porcentajeDescuento;
-        this.enPromocion = enPromocion;
     }
+    // Método para calcular el precio final
 
     @Override
     public double calcularPrecioFinal(java.time.LocalDate dia) {
         // Aplicar descuento si está en promoción y es de lunes a viernes
-        if (isEnPromocion() && (dia.getDayOfWeek().getValue() >= 1 && dia.getDayOfWeek().getValue() <= 5)) {
-            return precioPorNoche - (precioPorNoche * obtenerPorcentajeDescuento() / 100);
+        if (estaEnPromocion() && (dia.getDayOfWeek().getValue() >= 1 && dia.getDayOfWeek().getValue() <= 5)) {
+            return precioPorNoche - (precioPorNoche * getPorcentajeDescuento() / 100);
         }
         return precioPorNoche;
     }
@@ -57,5 +51,8 @@ public class Hospedaje extends Servicio {
         return precioPorNoche;
     }
 
+    private double getPorcentajeDescuento() {
+       return porcentajeDescuento;
+    }
 
 }

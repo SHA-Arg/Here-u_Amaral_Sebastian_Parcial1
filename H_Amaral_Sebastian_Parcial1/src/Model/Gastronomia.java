@@ -11,11 +11,11 @@ package Model;
  * Clase Gastronomia que extiende de Servicio.
  * Representa un servicio de gastronomía y contiene información específica sobre descuentos y promociones.
  */
-public class Gastronomia extends Servicio {
+public class Gastronomia extends Servicio{
      // Atributos específicos de Gastronomia 
     private String gastronomia;
     private double precio;
-    private int diaSemDesc;   
+    private int diaSemDesc;
     /**
      * Constructor de la clase Gastronomia.
      * Verifica que el codServicio sea válido antes de asignarlo.
@@ -28,23 +28,18 @@ public class Gastronomia extends Servicio {
      * @param enPromocion Indica si el servicio está en promoción.
      * @throws ServicioException Si el codServicio no es válido.
      */
-    public Gastronomia(String codServicio, double precio, boolean enPromocion, String gastronomia, double porcentajeDescuento, int diaSemDesc) {
-        if (String.valueOf(codServicio).length() < 5) {
-            throw new ServicioException("El código de servicio debe tener al menos 5 dígitos.");
-        }
-        this.codServicio = codServicio;
+   public Gastronomia(String codServicio, double porcentajeDescuento, boolean enPromocion, String gastronomia, double precio, int diaSemDesc) throws Exception {
+        super(codServicio, porcentajeDescuento, enPromocion);
         this.gastronomia = gastronomia;
         this.precio = precio;
         this.diaSemDesc = diaSemDesc;
-        this.porcentajeDescuento = porcentajeDescuento;
-        this.enPromocion = enPromocion;
     }
 
-    @Override
+   @Override
     public double calcularPrecioFinal(java.time.LocalDate dia) {
         // Aplicar descuento si está en promoción y es el día especificado
-        if (isEnPromocion() && dia.getDayOfWeek().getValue() == diaSemDesc) {
-            return precio - (precio * obtenerPorcentajeDescuento() / 100);
+        if (estaEnPromocion() && dia.getDayOfWeek().getValue() == diaSemDesc) {
+            return precio - (precio * getPorcentajeDescuento() / 100);
         }
         return precio;
     }
@@ -57,8 +52,5 @@ public class Gastronomia extends Servicio {
     public double getPrecio() {
         return precio;
     }
-
-    public double calcularPrecioFinal(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ 
 }

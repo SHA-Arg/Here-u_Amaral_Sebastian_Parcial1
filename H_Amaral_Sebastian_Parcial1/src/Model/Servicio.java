@@ -6,7 +6,7 @@ package Model;
  * 
  */
 public abstract class Servicio {
-    String codServicio;
+    protected String codServicio;
     protected double porcentajeDescuento;
     protected boolean enPromocion;
 
@@ -20,10 +20,6 @@ public abstract class Servicio {
         this.enPromocion = enPromocion;
     }
 
-    public Servicio() {
-
-    }
-
     // Métodos Getters y Setters
     public String obtenerCodServicio() {
         return codServicio;
@@ -33,7 +29,7 @@ public abstract class Servicio {
         return porcentajeDescuento;
     }
 
-    public boolean isEnPromocion() {
+    public boolean estaEnPromocion() {
         return enPromocion;
     }
 
